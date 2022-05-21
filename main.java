@@ -7,6 +7,7 @@ import java.util.*;
 public class main {
      public static ArrayList<String> output = new ArrayList<>();
   public static void main(String[] args) {
+    //导入文言文   
     divide("鹤鸣于九皋，声闻于野。鱼潜在渊，或在于渚。乐彼之园，爰有树檀，其下维萚。他山之石，可以为错,鹤鸣于九皋，声闻于天。鱼在于渚，或潜在渊。乐彼之园，爰有树檀，其下维榖。他山之石，可以攻玉。","2");
     divide("春江潮水连海平，海上明月共潮生。滟滟随波千万里，何处春江无月明！江流宛转绕芳甸，月照花林皆似霰；空里流霜不觉飞，汀上白沙看不见。江天一色无纤尘，皎皎空中孤月轮。江畔何人初见月？江月何年初照人？人生代代无穷已，江月年年望相似。不知江月待何人，但见长江送流水。白云一片去悠悠，青枫浦上不胜愁。谁家今夜扁舟子？何处相思明月楼？可怜楼上月裴回，应照离人妆镜台。玉户帘中卷不去，捣衣砧上拂还来。此时相望不相闻，愿逐月华流照君。鸿雁长飞光不度，鱼龙潜跃水成文。昨夜闲潭梦落花，可怜春半不还家。江水流春去欲尽，江潭落月复西斜。斜月沉沉藏海雾，碣石潇湘无限路。不知乘月几人归，落月摇情满江树。","5");
     divide("风急天高猿啸哀，渚清沙白鸟飞回。无边落木萧萧下，不尽长江滚滚来。万里悲秋常作客，百年多病独登台。艰难苦恨繁霜鬓，潦倒新停浊酒杯。","10");
@@ -37,6 +38,7 @@ public class main {
     divide("秋水时至，百川灌河；泾流之大，两涘渚崖之间不辩牛马。于是焉河伯欣然自喜，以天下之美为尽在己。顺流而东行，至于北海，东面而视，不见水端。于是焉河伯始旋其面目，望洋向若而叹曰：“野语有之曰：‘闻道百，以为莫己若者。’我之谓也。且夫我尝闻少仲尼之闻，而轻伯夷之义者，始吾弗信，今我睹子之难穷也，吾非至于子之门则殆矣。吾长见笑于大方之家。”","97");
     divide("昔者庄周梦为胡蝶，栩栩然胡蝶也。自喻适志与！不知周也。俄然觉，则蘧蘧然周也。不知周之梦为胡蝶与？胡蝶之梦为周与？周与胡蝶则必有分矣。此之谓物化","100");
     divide("留侯美好如妇人，五世相韩韩入秦。倾家为主合壮士，博浪沙中击秦帝。脱身下邳世不知，举国大索何能为。素书一卷天与之，谷城黄石非吾师。固陵解鞍聊出口，捕取项羽如婴儿。从来四皓招不得，为我立弃商山芝。洛阳贾谊才能薄，扰扰空令绛灌疑。","102");
+    //按拼音首字母排序
     Comparator comparator = Collator.getInstance(Locale.CHINA);
     Collator collator = Collator.getInstance();
     output.sort(collator::compare);
@@ -47,14 +49,18 @@ public class main {
 
   }
   private static void divide(String str, String page) {
+    //分隔符   
     String split = "\\pP|\\pS|\\pZ";
+    //排查文本中空白字符
     str.replaceAll(" ","");
     str.split(" ");
+    //分割
     List<String> list= Arrays.asList(str.split(split));
     Comparator comparator = Collator.getInstance(Locale.CHINA);
     Collator collator = Collator.getInstance();
     list.sort(collator::compare);
     //list.stream().forEach(System.out::println);
+    //加入页数   
     for(int i =0;i<list.size();i++){
       list.set(i,list.get(i)+" / "+page);
     }
